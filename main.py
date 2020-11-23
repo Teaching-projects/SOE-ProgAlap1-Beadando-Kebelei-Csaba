@@ -1,5 +1,9 @@
 import pygame
 
+def Clear():
+    import os
+    os.system("clear")
+
 def GenGame():
     return {
         "width" : 800,
@@ -13,11 +17,7 @@ def GenSnake():
     return {
         "size" : 20,
         "head" : {"x" : 300, "y" : 300},
-        "body" : [
-            {"x" : 300, "y" : 300},
-            {"x" : 280, "y" : 300},
-            {"x" : 260, "y" : 300}
-        ],
+        "body" : [],
         "change_x" : 20,
         "change_y" : 0
     }
@@ -51,11 +51,9 @@ def GenCoordinates(length):
     return coor
 
 def GoodCoordinates(x, y):
-    good = True
     for i in snake["body"]:
-        if i["x"] == x and i["y"] == y: good = False
-    if good: return True
-    else: return False
+        if i["x"] == x and i["y"] == y: return False
+    return True
 
 def GenFood():
     import random
@@ -80,14 +78,35 @@ def Eat():
     if snake["head"]["x"] == food["x"] and snake["head"]["y"] == food["y"]: return True
     else: return False
 
+def Body():
+    snake["body"].append({"x" : snake["head"]["x"], "y" : snake["head"]["y"]})
+    if len(snake["body"]) > (game["score"] + 1):
+        snake["body"].pop(0)
+
+def PrintSnake():
+     
+    Body()
+    
+    for i in range(len(snake["body"])):
+        x = snake["body"][i]["x"]
+        y = snake["body"][i]["y"]
+        pygame.draw.rect(screen, black,[x,y,20,20])
+
 def Wall(x, y):
     if x == game["width"] or x == -20 or y == game["height"] or y == -20: return True
     
+def SnakeInSnake():
+    for i in range(len(snake["body"])-1):
+        if snake["body"][i]["x"] == snake["head"]["x"] and snake["body"][i]["y"] == snake["head"]["y"]: return True
+    return False
+
 def Death():
-    if Wall(snake["head"]["x"], snake["head"]["y"]): return True
+    if Wall(snake["head"]["x"], snake["head"]["y"]) or SnakeInSnake(): return True
 
 #region Main
 pygame.init()
+
+Clear()
 
 white = (255, 255, 255)
 black = (0, 0, 0)
@@ -106,15 +125,11 @@ while game["run"]:
     if Death(): game["run"] = False
     
     Move()
-    
-    #for i in range(len(snake["body"])):
-    #    x = snake["body"][i]["x"]
-    #    y = snake["body"][i]["y"]
 
-    #    pygame.draw.rect(screen, black,[x,y,20,20])
     screen.fill(white)
-    pygame.draw.rect(screen, black, [snake["head"]["x"], snake["head"]["y"], snake["size"], snake["size"]])
-    
+
+    PrintSnake()
+
     if game["foodInMap"] == False:
         food = GenFood()
         game["foodInMap"] = True
@@ -126,7 +141,7 @@ while game["run"]:
 
     pygame.display.update()
     
-    clock.tick(15)
+    clock.tick(10)
 
 print(game["score"])
 
