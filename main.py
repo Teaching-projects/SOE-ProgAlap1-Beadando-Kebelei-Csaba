@@ -2,7 +2,10 @@ import pygame
 
 def Clear():
     import os
-    os.system("clear")
+    try:
+        os.system("clear")
+    except:
+        os.system("cls")
 
 def GenGame():
     return {
@@ -18,31 +21,33 @@ def GenSnake():
         "size" : 20,
         "head" : {"x" : 300, "y" : 300},
         "body" : [],
-        "change_x" : 20,
-        "change_y" : 0
+        "moving" : {"x" : 20, "y" : 0}
     }
 
 def Close():
     if event.type == pygame.QUIT: game["run"] = False 
 
-def Keydown():
+def Keydown(size, mov):
+    x = mov["x"]
+    y = mov["y"]
     if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_LEFT and (snake["change_x"] != snake["size"] and snake["change_y"] != 0):
-            snake["change_x"] = -snake["size"]
-            snake["change_y"] = 0
-        elif event.key == pygame.K_RIGHT and (snake["change_x"] != -snake["size"] and snake["change_y"] != 0):
-            snake["change_x"] = snake["size"]
-            snake["change_y"] = 0
-        elif event.key == pygame.K_UP and (snake["change_x"] != 0 and snake["change_y"] != snake["size"]):
-            snake["change_x"] = 0
-            snake["change_y"] = -snake["size"]
-        elif event.key == pygame.K_DOWN and (snake["change_x"] != 0 and snake["change_y"] != -snake["size"]):
-            snake["change_x"] = 0
-            snake["change_y"] = snake["size"]
+        if event.key == pygame.K_LEFT and (x != size and y != 0):
+            x = -size
+            y = 0
+        elif event.key == pygame.K_RIGHT and (x != -size and y != 0):
+            x = size
+            y = 0
+        elif event.key == pygame.K_UP and (x != 0 and y != size):
+            x = 0
+            y= -size
+        elif event.key == pygame.K_DOWN and (x != 0 and y != -size):
+            x = 0
+            y = size
+    return {"x" : x, "y" : y}
 
-def Move():
-    snake["head"]["x"] += snake["change_x"]
-    snake["head"]["y"] += snake["change_y"]
+def Move(mov):
+    snake["head"]["x"] += mov["x"]
+    snake["head"]["y"] += mov["y"]
 
 def GenCoordinates(length):
     coor = []
@@ -103,7 +108,6 @@ def SnakeInSnake():
 def Death():
     if Wall(snake["head"]["x"], snake["head"]["y"]) or SnakeInSnake(): return True
 
-#region Main
 pygame.init()
 
 Clear()
@@ -121,10 +125,10 @@ clock = pygame.time.Clock()
 while game["run"]:
     for event in pygame.event.get():
         Close()
-        Keydown()
+        snake["moving"] = Keydown(snake["size"], snake["moving"])
     if Death(): game["run"] = False
     
-    Move()
+    Move(snake["moving"])
 
     screen.fill(white)
 
@@ -147,4 +151,3 @@ print(game["score"])
 
 pygame.quit()
 quit()
-#endregion
