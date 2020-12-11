@@ -1,3 +1,6 @@
+import pygame
+import json
+
 def Clear():
     import os
     try:
@@ -25,12 +28,10 @@ def GenSnake():
     }
 
 def Close(event):
-    import pygame
     if event.type == pygame.QUIT: return False
     else: return True
 
 def Keydown(event, size, mov):
-    import pygame
     x = mov["x"]
     y = mov["y"]
     if event.type == pygame.KEYDOWN:
@@ -76,7 +77,6 @@ def GenFood(x, y, body):
     return {"x" : randx, "y" : randy}
    
 def FoodPrint(x, y, black, screen):
-    import pygame
     font = pygame.font.Font('freesansbold.ttf', 20) 
     text = font.render("π", True, black)
     screen.blit(text, (x, y))
@@ -91,7 +91,6 @@ def Body(snake, score):
         snake["body"].pop(0)
 
 def PrintSnake(snake, game, screen):
-    import pygame
     Body(snake, game["score"])
     
     for i in range(len(snake["body"])):
@@ -109,6 +108,41 @@ def SnakeInSnake(body, head):
 
 def Death(snake, width, height):
     if Wall(snake["head"], width, height, snake["size"]) or SnakeInSnake(snake["body"], snake["head"]): return True
+
+def Datetime():
+    import datetime
+    date = datetime.datetime.now()
+    return "{}-{}-{}".format(date.year, date.strftime("%m"), date.strftime("%d"))
+
+def Nickname():
+    return input("Nickname: ")
+
+def Load(fileName):
+    try:
+        infile = open(fileName, "r")
+        fileList = json.load(infile)
+        infile.close()
+    except:
+        fileList = []
+    return fileList
+
+def Save(score, fName):
+    dict = {
+        "name" : Nickname(),
+        "date" : Datetime(),
+        "score" : score
+    }
+
+    saveList = Load(fName)
+
+    saveList.append(dict)
+
+    statFile = open(fName, "wt")
+    json.dump(saveList, statFile)
+
+    statFile.close()
+    Clear()
+    return "{}, az eredményed elmentettük. 😁\n".format(dict["name"])
 
 def SnakeGame():
     import pygame
@@ -150,72 +184,27 @@ def SnakeGame():
 
     pygame.quit()
 
-    print(game["score"])
+    return Save(game["score"], "stat.json")
 
-# stat
-import json
+def Stat():
+    Clear()
+    print("Hello, World!\n")
 
-def Datetime():
-    import datetime
-    date = datetime.datetime.now()
-    return "{}-{}-{}".format(date.year, date.strftime("%m"), date.strftime("%d"))
+def Main():
+    Clear()
+    inp = 0
+    print("Üdvözöllek a Snake játékban!\n")
+    while inp != 3:
+        print("[1] Snake játék indítása 🐍")
+        print("[2] Statisztika megnézése 🏆")
+        print("[3] Kilépés a játékból ❌")
+        inp = int(input("Menüpont: "))
+        if inp == 1: print(SnakeGame())
+        elif inp == 2: Stat()
+    Clear()
 
-def Nickname():
-    return input("Nickname: ")
+##########
+#  TEST  #
+##########
 
-def Load(fileName):
-    try:
-        infile = open(fileName, "rt")
-        fileList = json.load(infile)
-        infile.close()
-    except:
-        fileList = []
-    return fileList
-
-def Save(score, fName):
-    dict = {
-        "name" : Nickname(),
-        "date" : Datetime(),
-        "score" : score
-    }
-
-    saveList = Load(fName)
-
-    saveList.append(dict)
-
-    statFile = open(fName, "wt")
-    json.dump(saveList, statFile)
-
-    statFile.close()
-
-def Count(stat):
-    names = []
-    for i in stat:
-        if len(i["name"]) > 0: names.append(i["name"])
-    
-    games = {
-        "names" : list(set(names)),
-        "rounds" : []
-    }
-    
-    for i in range(len(games["names"])):
-        db = 0
-        for j in range(len(names)):
-            if games["names"][i] == names[j]: db += 1
-        games["rounds"].append(db)
-        
-        maxRound = max(games["rounds"])
-        #for i in range(len(games["rounds"])):
-        #    if games["rounds"][i] == maxRound: return "{} a legnagyobb gamer, mert már {} kört játszott.".format(games["names"][i], maxRound)
-
-        return (games["names"], games["rounds"])
-
-def printStat(fName):
-    stat = Load(fName)
-    #print(Count(stat))
-    
-SnakeGame()
-print(Datetime())
-
-#Save(game["score"], "stat.json")
-#printStat("stat.json")
+Main()
