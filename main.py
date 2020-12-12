@@ -115,7 +115,14 @@ def Datetime():
     return "{}-{}-{}".format(date.year, date.strftime("%m"), date.strftime("%d"))
 
 def Nickname():
-    return input("Nickname: ")
+    name = ""
+    while True:
+        name = input("Nickname: ")
+        if len(name) < 17: break
+        print("Túl hosszú nickname! (16 karakternél ne legyen hosszabb)")
+    Clear()
+    if set(name) == {" "} or len(name) == 0: return "Anonim" 
+    return r"{}".format(name)
 
 def Load(fileName):
     try:
@@ -126,11 +133,12 @@ def Load(fileName):
         fileList = []
     return fileList
 
-def Save(score, fName):
+def Save(score, fName, nickname):
     dict = {
-        "name" : Nickname(),
+        "name" : nickname,
         "date" : Datetime(),
-        "score" : score
+        "score" : score,
+        "place" : ""
     }
 
     saveList = Load(fName)
@@ -142,13 +150,15 @@ def Save(score, fName):
 
     statFile.close()
     Clear()
-    return "{}, az eredményed elmentettük. 😁\n".format(dict["name"])
+    return "{}, a te pontszámod {} és ezt eredményed elmentettük. 😁\n".format(dict["name"], score)
 
 def SnakeGame():
     import pygame
     pygame.init()
 
     Clear()
+
+    name = Nickname()
 
     game = GenGame()
     snake = GenSnake()
@@ -184,11 +194,36 @@ def SnakeGame():
 
     pygame.quit()
 
-    return Save(game["score"], "stat.json")
+    return Save(game["score"], "stat.json", name)
+
+def Place(statlist):
+    returnList = []
+    for i in statlist:
+        returnList.append(i["score"])
+    returnList = list(set(returnList))
+    return sorted(returnList, reverse=True)[:3]
+
+def Winners(statlist):
+    places = Place(statlist[:])
+    returnList = []
+    emojiList = ["🥇", "🥈", "🥉"]
+    for i in range(len(places)):
+        for j in range(len(statlist)):
+            if places[i] == statlist[j]["score"]:
+                statlist[j]["place"] = emojiList[i]
+                returnList.append(statlist[j])
+    return returnList
 
 def Stat():
     Clear()
-    print("Hello, World!\n")
+    list = Winners(Load("stat.json")[:])
+    print("{:<18} {:<17} {:<17} {:<17}".format("Eredmény", "Nickname", "Dátum", "Pontszám"))
+    if len(list) == 0:
+        print("Nincs adatunk... Még játszani kell. 😉")
+    else:
+        for i in list:
+            print("{:<17} {:<17} {:<17} {:<17}".format("{:^8}".format(i["place"]), i["name"], i["date"], i["score"]))
+    print()
 
 def Main():
     Clear()
@@ -202,9 +237,5 @@ def Main():
         if inp == 1: print(SnakeGame())
         elif inp == 2: Stat()
     Clear()
-
-##########
-#  TEST  #
-##########
 
 Main()
