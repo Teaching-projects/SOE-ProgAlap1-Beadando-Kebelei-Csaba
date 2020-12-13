@@ -122,7 +122,7 @@ def Nickname():
         print("Túl hosszú nickname! (16 karakternél ne legyen hosszabb)")
     Clear()
     if set(name) == {" "} or len(name) == 0: return "Anonim" 
-    return r"{}".format(name)
+    return name
 
 def Load(fileName):
     try:
@@ -153,7 +153,6 @@ def Save(score, fName, nickname):
     return "{}, a te pontszámod {} és ezt eredményed elmentettük. 😁\n".format(dict["name"], score)
 
 def SnakeGame():
-    import pygame
     pygame.init()
 
     Clear()
@@ -231,11 +230,16 @@ def Main():
     print("Üdvözöllek a Snake játékban!\n")
     while inp != 3:
         print("[1] Snake játék indítása 🐍")
-        print("[2] Statisztika megnézése 🏆")
+        print("[2] Eredmények megnézése 🏆")
         print("[3] Kilépés a játékból ❌")
-        inp = int(input("Menüpont: "))
-        if inp == 1: print(SnakeGame())
-        elif inp == 2: Stat()
+        inp = input("Menüpont: ")
+        if inp in "123":
+            inp = int(inp)
+            if inp == 1: print(SnakeGame())
+            elif inp == 2: Stat()
+        else:
+            Clear()
+            print("Ilyen menüpont nem létezik.\n")
     Clear()
 
 Main()
