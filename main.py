@@ -216,12 +216,12 @@ def Winners(statlist):
 def Stat():
     Clear()
     list = Winners(Load("stat.json")[:])
-    print("{:<18} {:<17} {:<17} {:<17}".format("Eredmény", "Nickname", "Dátum", "Pontszám"))
+    print("{:<16} {:<17} {:<17} {:<17}".format("Eredmény", "Nickname", "Dátum", "Pontszám"))
     if len(list) == 0:
         print("Nincs adatunk... Még játszani kell. 😉")
     else:
         for i in list:
-            print("{:<17} {:<17} {:<17} {:<17}".format("{:^8}".format(i["place"]), i["name"], i["date"], i["score"]))
+            print("{:<15} {:<17} {:<17} {:<17}".format("{:^8}".format(i["place"]), i["name"], i["date"], i["score"]))
     print()
 
 def Main():
