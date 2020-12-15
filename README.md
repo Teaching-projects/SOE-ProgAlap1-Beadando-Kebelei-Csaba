@@ -16,7 +16,7 @@ A program egy egyszerű játékot valósít meg. Induláskor egy menüvel tudjuk
 <p>A második menüpont az elmentett eredményekről tájékoztat a következő formában:</p>
 
     Eredmény         Nickname          Dátum             Pontszám
-       🥇            Peitke            2020-12-12        16
+       🥇            Petike            2020-12-12        16
        🥈            'Nickname'        2020-12-13        7
        🥈            Jóska             2020-12-13        7
        🥉            Jácint            2020-12-12        6
