@@ -11,7 +11,7 @@ A program egy egyszerű játékot valósít meg. Induláskor egy menüvel tudjuk
 
 ![](gameplay.png)
 
-<p>Az eredményünk mentésre kerül, amiről tájékoztatást kapunk:</p>
+<p>Ha vesztettünk a játékban, akkor az eredményünk mentésre kerül, amiről tájékoztatást kapunk:</p>
 
     'Nickname', a te pontszámod 7 és ezt az eredményed elmentettük. 😁
 
