@@ -1,8 +1,8 @@
-import game
-import stati
+from moduls import game as GAME
+from moduls import stat as STAT
 
 def Main():
-    game.Clear()
+    GAME.Clear()
     inp = 0
     print("Üdvözöllek a Snake játékban!\n")
     while inp != 3:
@@ -12,11 +12,11 @@ def Main():
         inp = input("Menüpont: ")
         if inp in "123":
             inp = int(inp)
-            if inp == 1: print(game.SnakeGame())
-            elif inp == 2: stati.Stat()
+            if inp == 1: print(GAME.SnakeGame())
+            elif inp == 2: STAT.Stat()
         else:
-            game.Clear()
+            GAME.Clear()
             print("Ilyen menüpont nem létezik.\n")
-    game.Clear()
+    GAME.Clear()
 
 Main()
