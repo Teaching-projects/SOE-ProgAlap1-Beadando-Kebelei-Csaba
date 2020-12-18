@@ -9,7 +9,7 @@ A program egy egyszerű játékot valósít meg. Induláskor egy menüvel tudjuk
 <h2><li>Snake játék indítása 🐍</h2>
 <p> A legelső menüpont a játékot indítja el, ami indulás előtt egy nickname-et, becenevet vár, ami nem lehet hosszabb 16 karakternél. A játék célja, hogy minnél több pontot szerezzünk. A pontszám növekedését úgy érjük el, hogy ha a kígyó megeszik egy π karaktert, ami a pályán véletlenszerűen jelenik meg. Az étkezés után lehetőség van még repetázni, mert a pályán újra megjelnik egy π karakter. A kígyót úgy tudjuk etetni, hogy a π-re irányítjuk, amit a billentyűzet nyilaival tudunk megtenni. Minden elfogyasztott π után megnő a kígyó hossza, ami nehezíteni fogja a játékunk, mivel így könyebben irányíthatjuk a fejét a saját testébe, és ennek a következménye a játék vége. Ezen kívül még el kell kerülnünk azt, hogy a pálya falához érjünk, mert szintúgy vége lesz a játékunknak. Az eredményünk mentésre kerül, amiről tájékoztatást kapunk:</p>
 
-![](https://github.com/Teaching-projects/SOE-ProgAlap1-Beadando-Kebelei-Csaba/blob/master/gameplay.jpg)
+![](gameplay.jpg)
 
     'Nickname', a te pontszámod 7 és ezt eredményed elmentettük. 😁
 
