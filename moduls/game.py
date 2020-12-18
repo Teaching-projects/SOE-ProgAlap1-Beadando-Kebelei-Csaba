@@ -2,9 +2,7 @@ import pygame
 from moduls import file as FILE
 
 def Clear():
-    """
-        Terminál törlését, tisztítását végzi el a függvény.
-        Linux-on, Mac-en egyaránt működik.
+    """Terminál törlését, tisztítását végzi el a függvény.
     """
     import os
     try:
@@ -13,16 +11,24 @@ def Clear():
         os.system("cls")
 
 def GenGame() -> dict:
-    """
-        A függvény létrehoz egy game dictionary-t.
+    """A függvény létrehoz egy game dictionary-t.
 
-        width (int): Pálya hosszusága.
-        height (int): Pálya magassága.
-        run (bool): Megadja, hogy fut-e a játék.
-        score (int): A játék éppen pontszáma.
-        foodInMap (bool): Megadja, hogy van-e kaja generálva a pályára. 
-        white: Fehér szín rgb kódja.
-        black: Fekete szín rgb kódja.
+    Returns:
+        dict:
+
+            width (int): Pálya hosszusága.
+        
+            height (int): Pálya magassága.
+        
+            run (bool): Megadja, hogy fut-e a játék.
+        
+            score (int): A játék éppen pontszáma.
+        
+            foodInMap (bool): Megadja, hogy van-e kaja generálva a pályára. 
+
+            white (tuple): Fehér szín rgb kódja.
+        
+            black (tuple): Fekete szín rgb kódja.
     """
     return {
         "width" : 800,     
@@ -35,13 +41,18 @@ def GenGame() -> dict:
     }
 
 def GenSnake() -> dict:
-    """
-        A függvény létrehoz egy snake dictionary-t.
+    """A függvény létrehoz egy snake dictionary-t.
 
-        size (int): A kígyó méretes.
-        head (dict): Itt tárolódik a kígyó fejének az x és y koordinátája.
-        body (list): Itt tárolódik a kígyó testének minden darabjának a x és y koordinátája.
-        moving (dict): A kígyó irányát adja meg x és y koordinátákkal.
+    Returns:
+        dict:
+
+            size (int): A kígyó méretes.
+
+            head (dict): Itt tárolódik a kígyó fejének az x és y koordinátája.
+    
+            body (list): Itt tárolódik a kígyó testének minden darabjának a x és y koordinátája.
+        
+            moving (dict): A kígyó irányát adja meg x és y koordinátákkal.
     """
     return {
         "size" : 20,
@@ -51,8 +62,13 @@ def GenSnake() -> dict:
     }
 
 def Close(event) -> bool:
-    """
-    A függvény True értékkel tér vissza, ha a pygame ablakot bezárjuk és False értékkel ha nem történt semmi.
+    """Az ablak bezárásának vizsgálása
+
+    Args:
+        event (event): pygame saját típusa, ha valami történt akkor így tárolódik el
+
+    Returns:
+        bool: A függvény True értékkel tér vissza, ha a pygame ablakot bezárjuk és False értékkel ha nem történt semmi.
     """
     if event.type == pygame.QUIT: return False
     return True
@@ -102,7 +118,6 @@ def GenFood(x, y, body):
         if GoodCoordinates(randx, randy, body): break
         randx = random.choice(x)
         randy = random.choice(y)
-
     return {"x" : randx, "y" : randy}
    
 def FoodPrint(x, y, black, screen):

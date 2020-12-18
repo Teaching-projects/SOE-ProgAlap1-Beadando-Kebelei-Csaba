@@ -1,7 +1,6 @@
 from moduls import game as GAME
 from moduls import file as FILE
 
-
 def Place(statlist):
     returnList = []
     for i in statlist:
@@ -16,8 +15,14 @@ def Winners(statlist):
     for i in range(len(places)):
         for j in range(len(statlist)):
             if places[i] == statlist[j]["score"]:
-                statlist[j]["place"] = emojiList[i]
-                returnList.append(statlist[j])
+                returnList.append(
+                    {
+                        "name" : statlist[j]["name"],
+                        "date" : statlist[j]["date"],
+                        "score" : statlist[j]["score"],
+                        "place" : emojiList[i]
+                    }
+                )
     return returnList
 
 def Stat():
