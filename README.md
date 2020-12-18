@@ -13,7 +13,7 @@ A program egy egyszerű játékot valósít meg. Induláskor egy menüvel tudjuk
 
 <p>Ha vesztettünk a játékban, akkor az eredményünk mentésre kerül, amiről tájékoztatást kapunk:</p>
 
-    'Nickname', a te pontszámod 7 és ezt az eredményed elmentettük. 😁
+    'Nickname', a te pontszámod 7, amit elmentettünk. 😁
 
 <p>Ilyenkor viszajutunk az eredeti állapothoz és menü lesz újra előttünk.</p></li>
 <h2><li>Eredmények megnézése 🏆</h2>
@@ -22,7 +22,7 @@ A program egy egyszerű játékot valósít meg. Induláskor egy menüvel tudjuk
     Eredmény         Nickname          Dátum             Pontszám
        🥇            Petike            2020-12-12        16
        🥈            'Nickname'        2020-12-13        7
-       🥈            Jóska             2020-12-13        7
+       🥈            Jóska             2020-12-16        7
        🥉            Jácint            2020-12-12        6
 
 <p>Az első három legjobb eredmény jelenítődik meg, illetve, ha holtverseny alakult ki a az eredmények között, akkor az adott helyezéssel több eredmény is megjelenik. Viszont ha nincs még egy eredmény se akkor arról a következő üzenetbe tájékozódhatunk:</p>
