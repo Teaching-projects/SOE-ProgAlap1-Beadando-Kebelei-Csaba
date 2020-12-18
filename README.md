@@ -13,7 +13,7 @@ A program egy egyszerű játékot valósít meg. Induláskor egy menüvel tudjuk
 
 <p>Az eredményünk mentésre kerül, amiről tájékoztatást kapunk:</p>
 
-    'Nickname', a te pontszámod 7 és ezt eredményed elmentettük. 😁
+    'Nickname', a te pontszámod 7 és ezt az eredményed elmentettük. 😁
 
 <p>Ilyenkor viszajutunk az eredeti állapothoz és menü lesz újra előttünk.</p></li>
 <h2><li>Eredmények megnézése 🏆</h2>

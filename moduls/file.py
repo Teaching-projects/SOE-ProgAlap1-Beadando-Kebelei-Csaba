@@ -32,4 +32,4 @@ def Save(score, fName, nickname):
 
     statFile.close()
     GAME.Clear()
-    return "{}, a te pontszámod {} és ezt eredményed elmentettük. 😁\n".format(dict["name"], score)
+    return "{}, a te pontszámod {} és ezt az eredményed elmentettük. 😁\n".format(dict["name"], score)
