@@ -1,5 +1,5 @@
 # SOE-ProgAlap1-Beadando-Kebelei-Csaba
-A program egy egyszerű játékot valósít meg. Induláskor egy menüvel tudjuk irányítani a program futását. A menüpontok után egy bementet vár a szoftver, ami lehet 1, 2, 3. A következő menüpontokat láthatjuk:
+<p>A program egy egyszerű játékot valósít meg. Induláskor egy menüvel tudjuk irányítani a program futását. A menüpontok után egy bementet vár a szoftver, ami lehet 1, 2, 3. A következő menüpontokat láthatjuk:</p>
 
     [1] Snake játék indítása 🐍
     [2] Eredmények megnézése 🏆
@@ -7,7 +7,7 @@ A program egy egyszerű játékot valósít meg. Induláskor egy menüvel tudjuk
 
 <ol>
 <h2><li>Snake játék indítása 🐍</h2>
-<p> A legelső menüpont a játékot indítja el, ami indulás előtt egy nickname-et, becenevet vár, ami nem lehet hosszabb 16 karakternél. A játék célja, hogy minnél több pontot szerezzünk. A pontszám növekedését úgy érjük el, hogy ha a kígyó megeszik egy π karaktert, ami a pályán véletlenszerűen jelenik meg. Az étkezés után lehetőség van még repetázni, mert a pályán újra megjelnik egy π karakter. A kígyót úgy tudjuk etetni, hogy a π-re irányítjuk, amit a billentyűzet nyilaival tudunk megtenni. Minden elfogyasztott π után megnő a kígyó hossza, ami nehezíteni fogja a játékunk, mivel így könyebben irányíthatjuk a fejét a saját testébe, és ennek a következménye a játék vége. Ezen kívül még el kell kerülnünk azt, hogy a pálya falához érjünk, mert szintúgy vége lesz a játékunknak.</p>
+<p>A legelső menüpont a játékot indítja el, ami indulás előtt egy nickname-et, becenevet vár, ami nem lehet hosszabb 16 karakternél. A játék célja, hogy minnél több pontot szerezzünk. A pontszám növekedését úgy érjük el, hogy ha a kígyó megeszik egy π karaktert, ami a pályán véletlenszerűen jelenik meg. Az étkezés után lehetőség van még repetázni, mert a pályán újra megjelnik egy π karakter. A kígyót úgy tudjuk etetni, hogy a π-re irányítjuk, amit a billentyűzet nyilaival tudunk megtenni. Minden elfogyasztott π után megnő a kígyó hossza, ami nehezíteni fogja a játékunk, mivel így könyebben irányíthatjuk a fejét a saját testébe, és ennek a következménye a játék vége. Ezen kívül még el kell kerülnünk azt, hogy a pálya falához érjünk, mert szintúgy vége lesz a játékunknak.</p>
 
 ![](gameplay.png)
 
@@ -25,7 +25,7 @@ A program egy egyszerű játékot valósít meg. Induláskor egy menüvel tudjuk
        🥈            Jóska             2020-12-16        7
        🥉            Jácint            2020-12-12        6
 
-<p>Az első három legjobb eredmény jelenítődik meg, illetve, ha holtverseny alakult ki a az eredmények között, akkor az adott helyezéssel több eredmény is megjelenik. Viszont ha nincs még egy eredmény se akkor arról a következő üzenetbe tájékozódhatunk:</p>
+<p>Az első három legjobb eredmény jelenítődik meg, illetve, ha holtverseny alakult ki a az eredmények között, akkor az adott helyezéssel több eredmény is megjelenik. Viszont ha nincs még egy eredmény se, akkor arról a következő üzenetbe tájékozódhatunk:</p>
 
     Eredmény         Nickname          Dátum             Pontszám
     Nincs adatunk... Még játszani kell. 😉

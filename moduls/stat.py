@@ -1,14 +1,30 @@
 from moduls import game as GAME
 from moduls import file as FILE
 
-def Place(statlist):
+def Place(statlist:list) -> list:
+    """A legjobb pontszámokat adja vissza.
+
+    Args:
+        statlist (list): Lista, ami az eredményeket tárolja.
+
+    Returns:
+        list: Lista, ahol az első három legjobb eredmény pontszáma van benne csökkenő sorrendben.
+    """
     returnList = []
     for i in statlist:
         returnList.append(i["score"])
     returnList = list(set(returnList))
     return sorted(returnList, reverse=True)[:3]
 
-def Winners(statlist):
+def Winners(statlist:list) -> list:
+    """A legjobb 3 eredményt, illetve a holtversenyt adja vissza a helyezés emojival.
+
+    Args:
+        statlist (list): Lista, ami az eredményeket tárolja.
+
+    Returns:
+        list: A legjobb eredmények csökkenő sorrendben a megfelelő helyezést jelentő emojival. 
+    """
     places = Place(statlist[:])
     returnList = []
     emojiList = ["🥇", "🥈", "🥉"]
@@ -26,6 +42,9 @@ def Winners(statlist):
     return returnList
 
 def Stat():
+    """A függvény törli a terminál eddigi tartalmát, majd megjeleníti egy eredménytáblában a legjobb eredményeket.
+    Ha nincs eredmény, vagyis az eredmények listája üres, akkor arról külön tájékoztatást jelenít meg a függvény.
+    """
     GAME.Clear()
     list = Winners(FILE.Load("stat.json")[:])
     print("{:<16} {:<17} {:<17} {:<17}".format("Eredmény", "Nickname", "Dátum", "Pontszám"))

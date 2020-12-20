@@ -1,5 +1,5 @@
-import json
 from moduls import game as GAME
+import json
 
 def Datetime() -> str:
     """A függvény képes az éppeni dátum formázott megjelenítésére: év-hónap-nap.
@@ -12,13 +12,13 @@ def Datetime() -> str:
     return "{}-{}-{}".format(date.year, date.strftime("%m"), date.strftime("%d"))
 
 def Load(fileName:str) -> list:
-    """Betölti a fájlban lévő adatokat.
+    """Betölti a json fájlban lévő adatokat.
 
     Args:
         fileName (str): A fájl neve.
 
     Returns:
-        list: Ha a fájlban van adat akkor azzal tér vissze, különben egy üres listával.
+        list: Ha a fájlban van adat akkor azzal tér vissza, különben egy üres listával.
     """
     try:
         infile = open(fileName, "r")
@@ -29,7 +29,7 @@ def Load(fileName:str) -> list:
     return fileList
 
 def Save(score:int, fName:str, nickname:str) -> str:
-    """Egy fájlba kiírja egy az eddigi eredmények és a most elért eredmény tartalmát, 
+    """Egy json fájlba kiírja egy az eddigi eredmények és a most elért eredmény tartalmát, 
     vagyis a nickname-et, dátumot és pontszámot.
 
     Args:

@@ -26,8 +26,8 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import json
-from moduls import game as GAME
+<pre><code class="python">from moduls import game as GAME
+import json
 
 def Datetime() -&gt; str:
     &#34;&#34;&#34;A függvény képes az éppeni dátum formázott megjelenítésére: év-hónap-nap.
@@ -40,13 +40,13 @@ def Datetime() -&gt; str:
     return &#34;{}-{}-{}&#34;.format(date.year, date.strftime(&#34;%m&#34;), date.strftime(&#34;%d&#34;))
 
 def Load(fileName:str) -&gt; list:
-    &#34;&#34;&#34;Betölti a fájlban lévő adatokat.
+    &#34;&#34;&#34;Betölti a json fájlban lévő adatokat.
 
     Args:
         fileName (str): A fájl neve.
 
     Returns:
-        list: Ha a fájlban van adat akkor azzal tér vissze, különben egy üres listával.
+        list: Ha a fájlban van adat akkor azzal tér vissza, különben egy üres listával.
     &#34;&#34;&#34;
     try:
         infile = open(fileName, &#34;r&#34;)
@@ -57,7 +57,7 @@ def Load(fileName:str) -&gt; list:
     return fileList
 
 def Save(score:int, fName:str, nickname:str) -&gt; str:
-    &#34;&#34;&#34;Egy fájlba kiírja egy az eddigi eredmények és a most elért eredmény tartalmát, 
+    &#34;&#34;&#34;Egy json fájlba kiírja egy az eddigi eredmények és a most elért eredmény tartalmát, 
     vagyis a nickname-et, dátumot és pontszámot.
 
     Args:
@@ -83,7 +83,7 @@ def Save(score:int, fName:str, nickname:str) -&gt; str:
 
     statFile.close()
     GAME.Clear()
-    return &#34;{}, a te pontszámod {} és ezt az eredményed elmentettük. 😁\n&#34;.format(dict[&#34;name&#34;], score)</code></pre>
+    return &#34;{}, a te pontszámod {}, amit elmentettünk. 😁\n&#34;.format(dict[&#34;name&#34;], score)</code></pre>
 </details>
 </section>
 <section>
@@ -122,7 +122,7 @@ def Save(score:int, fName:str, nickname:str) -&gt; str:
 <span>def <span class="ident">Load</span></span>(<span>fileName: str) ‑> list</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Betölti a fájlban lévő adatokat.</p>
+<div class="desc"><p>Betölti a json fájlban lévő adatokat.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>fileName</code></strong> :&ensp;<code>str</code></dt>
@@ -131,20 +131,20 @@ def Save(score:int, fName:str, nickname:str) -&gt; str:
 <h2 id="returns">Returns</h2>
 <dl>
 <dt><code>list</code></dt>
-<dd>Ha a fájlban van adat akkor azzal tér vissze, különben egy üres listával.</dd>
+<dd>Ha a fájlban van adat akkor azzal tér vissza, különben egy üres listával.</dd>
 </dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def Load(fileName:str) -&gt; list:
-    &#34;&#34;&#34;Betölti a fájlban lévő adatokat.
+    &#34;&#34;&#34;Betölti a json fájlban lévő adatokat.
 
     Args:
         fileName (str): A fájl neve.
 
     Returns:
-        list: Ha a fájlban van adat akkor azzal tér vissze, különben egy üres listával.
+        list: Ha a fájlban van adat akkor azzal tér vissza, különben egy üres listával.
     &#34;&#34;&#34;
     try:
         infile = open(fileName, &#34;r&#34;)
@@ -159,7 +159,7 @@ def Save(score:int, fName:str, nickname:str) -&gt; str:
 <span>def <span class="ident">Save</span></span>(<span>score: int, fName: str, nickname: str) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Egy fájlba kiírja egy az eddigi eredmények és a most elért eredmény tartalmát,
+<div class="desc"><p>Egy json fájlba kiírja egy az eddigi eredmények és a most elért eredmény tartalmát,
 vagyis a nickname-et, dátumot és pontszámot.</p>
 <h2 id="args">Args</h2>
 <dl>
@@ -180,7 +180,7 @@ vagyis a nickname-et, dátumot és pontszámot.</p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def Save(score:int, fName:str, nickname:str) -&gt; str:
-    &#34;&#34;&#34;Egy fájlba kiírja egy az eddigi eredmények és a most elért eredmény tartalmát, 
+    &#34;&#34;&#34;Egy json fájlba kiírja egy az eddigi eredmények és a most elért eredmény tartalmát, 
     vagyis a nickname-et, dátumot és pontszámot.
 
     Args:
@@ -206,7 +206,7 @@ vagyis a nickname-et, dátumot és pontszámot.</p>
 
     statFile.close()
     GAME.Clear()
-    return &#34;{}, a te pontszámod {} és ezt az eredményed elmentettük. 😁\n&#34;.format(dict[&#34;name&#34;], score)</code></pre>
+    return &#34;{}, a te pontszámod {}, amit elmentettünk. 😁\n&#34;.format(dict[&#34;name&#34;], score)</code></pre>
 </details>
 </dd>
 </dl>
